@@ -1,4 +1,4 @@
-# Student API Java Application
+# CRUD with API Testing
 **Highlights**
   - Uses Springboot Framework
   - Profile-based deployment. Ex. H2 database for Local and MySQL database for SIT.
