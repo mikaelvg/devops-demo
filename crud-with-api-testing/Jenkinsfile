@@ -1,0 +1,43 @@
+pipeline {
+
+    environment {
+        studentRegistry = "mikaelvg/crud-with-api-testing"
+        registryCredential = 'dockerhub'
+     }
+
+    agent any
+    stages {
+        stage ('Repo') {
+            steps {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'github-account',
+                    usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                        sh 'echo uname=$USERNAME pwd=$PASSWORD'
+                        git branch: 'master', url: "https://$USERNAME:$PASSWORD@github.com/mikaelvg/dginx.git"
+                    }
+            }
+        }
+
+
+        stage ('Sonar & Build Package') {
+            steps {
+                withMaven(
+                    maven: 'maven-3',
+                    mavenSettingsConfig: 'jenkins-maven-settings') {
+                    sh "mvn clean package -f crud-with-api-testing/pom.xml"
+                    }
+            }
+        }
+
+        stage('Docker') {
+          steps{
+            script {
+                docker.withRegistry( '', registryCredential ) {
+                    //def studentImage = docker.build studentRegistry + ":$BUILD_NUMBER"
+                    def studentImage = docker.build(studentRegistry + ":latest", "./crud-with-api-testing") 
+                    studentImage.push()
+                }
+            }
+          }
+        }
+    }
+}
