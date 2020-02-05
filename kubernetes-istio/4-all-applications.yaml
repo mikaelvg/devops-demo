@@ -30,8 +30,8 @@ spec:
     app: student-api
   type: NodePort
   ports:
-    - port: 8080
-      targetPort: 80
-      nodePort: 31000      
+    - port: 7300
+      targetPort: 7300
+      nodePort: 31300
       protocol: TCP
       name: http
