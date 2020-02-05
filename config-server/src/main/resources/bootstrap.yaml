@@ -5,6 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/mikaelvg/config-repo/
+            uri: https://github.com/mikaelvg/devops-demo
+            searchPaths: 'config-repo/{application}/{profile}'
 server:
   port: 7100

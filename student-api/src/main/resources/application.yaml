@@ -1,6 +1,10 @@
 server:
-  port: 9080
+  port: 7300
+
+---
+
 spring:
+  profiles: dev
   datasource:
     driverClassName: org.h2.Driver
     password: password
@@ -15,18 +19,3 @@ spring:
     hibernate:
       ddl-auto: update
 
----
-server:
-  port: 9080
-spring:
-  profiles: sit
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL5Dialect
-    hibernate:
-      ddl-auto: none
-  datasource:
-    #url: jdbc:mysql://localhost:3306/student?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    url: jdbc:mysql://54.90.217.130:3306/student
-    username: root
-    password: M1kael01
-    driver-class-name: com.mysql.jdbc.Driver

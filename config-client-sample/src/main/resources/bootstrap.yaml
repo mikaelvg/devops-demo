@@ -1,0 +1,49 @@
+spring:
+  profiles:
+    active: @spring.profiles.active@
+  application:
+    name: config-client-sample
+
+---
+
+spring:
+  profiles: dev
+  cloud:
+    config:
+      uri: http://localhost:${config.port:7100}
+management:
+  security:
+    enabled: false
+
+---
+
+spring:
+  profiles: sit
+  cloud:
+    config:
+      uri: http://localhost:${config.port:7100}
+management:
+  security:
+    enabled: false
+
+---
+
+spring:
+  profiles: uat
+  cloud:
+    config:
+      uri: http://localhost:${config.port:7100}
+management:
+  security:
+    enabled: false
+
+---
+
+spring:
+  profiles: prod
+  cloud:
+    config:
+      uri: http://localhost:${config.port:7100}
+management:
+  security:
+    enabled: false

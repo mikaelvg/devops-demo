@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: student-api
+  cloud:
+    config:
+      uri: http://localhost:${config.port:7100}
+management:
+  security:
+    enabled: false
