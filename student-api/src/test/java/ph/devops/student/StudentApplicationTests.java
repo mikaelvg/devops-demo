@@ -29,7 +29,7 @@ import static org.junit.Assert.assertEquals;
         webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class StudentApplicationTests {
 
-    private int definedPort = 9080;
+    private int definedPort = 7300;
 
     private Student classA1;
 
@@ -111,7 +111,7 @@ public class StudentApplicationTests {
     @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:data.sql")
     public void testDeleteMassStudent() throws URISyntaxException, JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9080/api/student/deleteids?ids=1,2,3";
+        String url = "http://localhost:" + definedPort + "/api/student/deleteids?ids=1,2,3";
         URI uri = new URI(url);
         restTemplate.delete(uri);
 

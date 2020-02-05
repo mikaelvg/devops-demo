@@ -1,23 +1,19 @@
-package ph.devops.ms.configclientsample;
+package ph.devops.student.controller;
 
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-
-@RequestMapping("/rest")
+@RequestMapping("/api")
 @RestController
-@RefreshScope
-public class MessageResource {
+public class EnvDetailsController {
 
     @Value("${message:Resource Not loaded}")
     private String message;
 
-    @GetMapping("/message")
+    @GetMapping("/env")
     public String message() {
         return  message;
     }

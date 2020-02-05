@@ -1,7 +1,12 @@
+spring:
+  profiles:
+    active: @spring.profiles.active@
 server:
   port: 7300
 
 ---
+
+message: You are using DEV Config
 
 spring:
   profiles: dev
@@ -19,3 +24,12 @@ spring:
     hibernate:
       ddl-auto: update
 
+---
+
+message: You are using UAT Config
+
+spring:
+  profiles: uat
+  cloud:
+    config:
+      uri: http://localhost:${config.port:7100}
