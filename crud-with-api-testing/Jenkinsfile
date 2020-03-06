@@ -25,6 +25,9 @@ pipeline {
                     mavenSettingsConfig: 'jenkins-maven-settings') {
                     sh "mvn clean package -Dmaven.test.skip -f crud-with-api-testing/pom.xml"
                     }
+                
+                slackSend channel: 'allteams', color: 'good', message: 'started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)', teamDomain: 'devkinetics'
+                
             }
         }
 
